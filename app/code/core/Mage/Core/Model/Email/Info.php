@@ -84,14 +84,14 @@ class Mage_Core_Model_Email_Info extends Varien_Object
     /**
      * Add new "To" recipient to current email
      *
-     * @param string $email
-     * @param string|null $name
+     * @param array|string $email
+     * @param array|string|null $name
      * @return $this
      */
     public function addTo($email, $name = null)
     {
-        $this->_toNames[] = $name;
-        $this->_toEmails[] = $email;
+        array_push($this->_toNames, $name);
+        array_push($this->_toEmails, $email);
         return $this;
     }
 
