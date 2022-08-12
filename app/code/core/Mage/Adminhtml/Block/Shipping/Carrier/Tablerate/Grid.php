@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -44,6 +50,8 @@ class Mage_Adminhtml_Block_Shipping_Carrier_Tablerate_Grid extends Mage_Adminhtm
 
     /**
      * Define grid properties
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -80,7 +88,7 @@ class Mage_Adminhtml_Block_Shipping_Carrier_Tablerate_Grid extends Mage_Adminhtm
     /**
      * Set current website
      *
-     * @param int $name
+     * @param int $websiteId
      * @return $this
      */
     public function setConditionName($name)

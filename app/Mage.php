@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage
@@ -216,7 +222,7 @@ final class Mage
             return array(
                 'major'     => '20',
                 'minor'     => '0',
-                'patch'     => '16',
+                'patch'     => '15',
                 'stability' => '', // beta,alpha,rc
                 'number'    => '', // 1,2,3,0.3.7,x.7.z.92 @see https://semver.org/#spec-item-9
             );
@@ -225,7 +231,7 @@ final class Mage
         return array(
             'major'     => '19',
             'minor'     => '4',
-            'patch'     => '18',
+            'patch'     => '17',
             'stability' => '', // beta,alpha,rc
             'number'    => '', // 1,2,3,0.3.7,x.7.z.92 @see https://semver.org/#spec-item-9
         );

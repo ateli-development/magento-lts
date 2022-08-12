@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -53,7 +59,9 @@ class Mage_Adminhtml_Block_Customer_Edit_Renderer_Region
     public function render(Varien_Data_Form_Element_Abstract $element)
     {
         $country = $element->getForm()->getElement('country_id');
-        if (is_null($country)) {
+        if (!is_null($country)) {
+            $countryId = $country->getValue();
+        } else {
             return $element->getDefaultHtml();
         }
 
@@ -76,7 +84,7 @@ class Mage_Adminhtml_Block_Customer_Edit_Renderer_Region
         $html .= '<script type="text/javascript">' . "\n";
         $html .= '$("' . $selectId . '").setAttribute("defaultValue", "' . $regionId.'");' . "\n";
         $html .= 'new regionUpdater("' . $country->getHtmlId() . '", "' . $element->getHtmlId() . '", "' .
-            $selectId . '", ' . Mage::helper('directory')->getRegionJsonByStore($quoteStoreId).');' . "\n";
+            $selectId . '", ' . $this->helper('directory')->getRegionJsonByStore($quoteStoreId).');' . "\n";
         $html .= '</script>' . "\n";
 
         $html .= '</td></tr>' . "\n";

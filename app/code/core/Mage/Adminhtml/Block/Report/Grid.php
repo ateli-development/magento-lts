@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -85,21 +91,15 @@ class Mage_Adminhtml_Block_Report_Grid extends Mage_Adminhtml_Block_Widget_Grid
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
     protected function _prepareColumns()
     {
         foreach ($this->_columns as $_column) {
             $_column->setSortable(false);
         }
 
-        return parent::_prepareColumns();
+        parent::_prepareColumns();
     }
 
-    /**
-     * @return void
-     */
     protected function _prepareCollection()
     {
         $filter = $this->getParam($this->getVarNameFilter(), null);
@@ -424,7 +424,7 @@ class Mage_Adminhtml_Block_Report_Grid extends Mage_Adminhtml_Block_Widget_Grid
     /**
      * Retrieve grid as CSV
      *
-     * @return string
+     * @return unknown
      */
     public function getCsv()
     {
@@ -618,7 +618,7 @@ class Mage_Adminhtml_Block_Report_Grid extends Mage_Adminhtml_Block_Widget_Grid
     /**
      * Get currency rate (base to given currency)
      *
-     * @param string|Mage_Directory_Model_Currency $toCurrency
+     * @param string|Mage_Directory_Model_Currency $currencyCode
      * @return double
      */
     public function getRate($toCurrency)

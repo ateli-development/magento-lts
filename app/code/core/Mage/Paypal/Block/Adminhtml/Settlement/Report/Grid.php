@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Paypal
@@ -46,7 +52,8 @@ class Mage_Paypal_Block_Adminhtml_Settlement_Report_Grid extends Mage_Adminhtml_
     }
 
     /**
-     * @inheritDoc
+     * Prepare collection for grid
+     * @return Mage_Paypal_Block_Adminhtml_Settlement_Grid
      */
     protected function _prepareCollection()
     {
@@ -59,7 +66,8 @@ class Mage_Paypal_Block_Adminhtml_Settlement_Report_Grid extends Mage_Adminhtml_
     }
 
     /**
-     * @inheritDoc
+     * Prepare grid columns
+     * @return Mage_Paypal_Block_Adminhtml_Settlement_Grid
      */
     protected function _prepareColumns()
     {

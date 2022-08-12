@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Varien
  * @package     Varien_Simplexml
@@ -73,7 +79,6 @@ class Varien_Simplexml_Element extends SimpleXMLElement
      *
      * @return boolean
      */
-    #[ReturnTypeWillChange]
     public function hasChildren()
     {
         if (!$this->children()) {
@@ -448,7 +453,7 @@ class Varien_Simplexml_Element extends SimpleXMLElement
         foreach ($arr1 as $v) {
             if (!empty($v)) $arr[] = $v;
         }
-        $last = count($arr) - 1;
+        $last = sizeof($arr)-1;
         $node = $this;
         foreach ($arr as $i=>$nodeName) {
             if ($last===$i) {

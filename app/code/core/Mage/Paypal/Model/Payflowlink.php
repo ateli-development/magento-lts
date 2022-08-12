@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Paypal
@@ -127,7 +133,7 @@ class Mage_Paypal_Model_Payflowlink extends Mage_Paypal_Model_Payflowpro
     /**
      * Check whether payment method can be used
      *
-     * @param Mage_Sales_Model_Quote|null $quote
+     * @param Mage_Sales_Model_Quote
      * @return bool
      */
     public function isAvailable($quote = null)
@@ -563,6 +569,7 @@ class Mage_Paypal_Model_Payflowlink extends Mage_Paypal_Model_Payflowpro
      * @deprecated since 1.6.2.0
      * @param Varien_Object $payment
      * @param string $txnId
+     * @return void
      */
     protected function _addTransaction($payment, $txnId)
     {

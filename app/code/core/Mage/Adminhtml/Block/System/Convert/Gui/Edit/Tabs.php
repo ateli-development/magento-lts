@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -27,9 +33,6 @@
  */
 class Mage_Adminhtml_Block_System_Convert_Gui_Edit_Tabs extends Mage_Adminhtml_Block_Widget_Tabs
 {
-    /**
-     * Mage_Adminhtml_Block_System_Convert_Gui_Edit_Tabs constructor.
-     */
     public function __construct()
     {
         parent::__construct();
@@ -38,10 +41,6 @@ class Mage_Adminhtml_Block_System_Convert_Gui_Edit_Tabs extends Mage_Adminhtml_B
         $this->setTitle(Mage::helper('adminhtml')->__('Import/Export Profile'));
     }
 
-    /**
-     * @inheritDoc
-     * @throws Exception
-     */
     protected function _beforeToHtml()
     {
         $profile = Mage::registry('current_convert_profile');
@@ -58,7 +57,7 @@ class Mage_Adminhtml_Block_System_Convert_Gui_Edit_Tabs extends Mage_Adminhtml_B
         ));
 
         if (!$new) {
-            if ($profile->getDirection() !== 'export') {
+            if ($profile->getDirection()!='export') {
                 $this->addTab('upload', array(
                     'label'     => Mage::helper('adminhtml')->__('Upload File'),
                     'content'   => $this->getLayout()->createBlock('adminhtml/system_convert_gui_edit_tab_upload')->toHtml(),
@@ -70,12 +69,9 @@ class Mage_Adminhtml_Block_System_Convert_Gui_Edit_Tabs extends Mage_Adminhtml_B
                 'content'   => $this->getLayout()->createBlock('adminhtml/system_convert_profile_edit_tab_run')->toHtml(),
             ));
 
-            /** @var Mage_Adminhtml_Block_System_Convert_Gui_Edit_Tab_View
-            $block */
-            $block = $this->getLayout()->createBlock('adminhtml/system_convert_gui_edit_tab_view');
             $this->addTab('view', array(
                 'label'     => Mage::helper('adminhtml')->__('Profile Actions XML'),
-                'content'   => $block->initForm()->toHtml(),
+                'content'   => $this->getLayout()->createBlock('adminhtml/system_convert_gui_edit_tab_view')->initForm()->toHtml(),
             ));
 
             $this->addTab('history', array(

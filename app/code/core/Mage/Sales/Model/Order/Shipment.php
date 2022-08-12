@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Sales
@@ -78,7 +84,7 @@ class Mage_Sales_Model_Order_Shipment extends Mage_Sales_Model_Abstract
     const REPORT_DATE_TYPE_ORDER_CREATED        = 'order_created';
     const REPORT_DATE_TYPE_SHIPMENT_CREATED     = 'shipment_created';
 
-    /**
+    /*
      * Identifier for order history item
      */
     const HISTORY_ENTITY_NAME = 'shipment';
@@ -681,7 +687,7 @@ class Mage_Sales_Model_Order_Shipment extends Mage_Sales_Model_Abstract
     /**
      * Get shipping label and decode by db adapter
      *
-     * @return string
+     * @return void
      */
     public function getShippingLabel()
     {

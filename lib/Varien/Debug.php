@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Varien
  * @package     Varien_Debug
@@ -111,10 +117,10 @@ class Varien_Debug
                     $className,
                     isset($data['type']) ? $data['type'] : '->',
                     $data['function'],
-                    implode(', ', $args)
+                    join(', ', $args)
                 );
             } else if (isset($data['function'])) {
-                $methodName = sprintf('%s(%s)', $data['function'], implode(', ', $args));
+                $methodName = sprintf('%s(%s)', $data['function'], join(', ', $args));
             }
 
             if (isset($data['file'])) {
@@ -175,9 +181,9 @@ class Varien_Debug
                 foreach ($args as $k => $v) {
                     $arr[] = self::_formatCalledArgument($k) . ' => ' . $v;
                 }
-                $out .= 'array(' . implode(', ', $arr) . ')';
+                $out .= 'array(' . join(', ', $arr) . ')';
             } else {
-                $out .= 'array(' . implode(', ', $args) . ')';
+                $out .= 'array(' . join(', ', $args) . ')';
             }
         } else if (is_null($arg)) {
             $out .= 'NULL';

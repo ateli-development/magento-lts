@@ -2382,7 +2382,7 @@ class Net_IDNA2
         }
         // Catch the rest of the string
         if ($last_begin) {
-            $inp_len = count($decoded);
+            $inp_len = sizeof($decoded);
             $encoded = '';
             $encoded = $this->_encode(array_slice($decoded, $last_begin, (($inp_len)-$last_begin)));
             if ($encoded) {
@@ -2439,7 +2439,7 @@ class Net_IDNA2
                 $conv = $this->_decode($v);
                 if ($conv) $arr[$k] = $conv;
             }
-            $return = $email_pref . '@' . implode('.', $arr);
+            $return = $email_pref . '@' . join('.', $arr);
         } elseif (preg_match('![:\./]!', $input)) { // Or a complete domain name (with or without paths / parameters)
             // No no in strict mode
             if ($this->_strict_mode) {
@@ -2453,7 +2453,7 @@ class Net_IDNA2
                     $conv = $this->_decode($v);
                     if ($conv) $arr[$k] = $conv;
                 }
-                $parsed['host'] = implode('.', $arr);
+                $parsed['host'] = join('.', $arr);
                 if (isset($parsed['scheme'])) {
                     $parsed['scheme'] .= (strtolower($parsed['scheme']) == 'mailto') ? ':' : '://';
                 }
@@ -2464,7 +2464,7 @@ class Net_IDNA2
                     $conv = $this->_decode($v);
                     if ($conv) $arr[$k] = $conv;
                 }
-                $return = implode('.', $arr);
+                $return = join('.', $arr);
             }
         } else { // Otherwise we consider it being a pure domain name string
             $return = $this->_decode($input);

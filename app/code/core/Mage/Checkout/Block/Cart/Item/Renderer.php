@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Checkout
@@ -26,9 +32,9 @@
  * @author      Magento Core Team <core@magentocommerce.com>
  *
  * @method bool hasProductName()
- * @method $this setProductName(string $value)
+ * @method $this setProductName(string)
  * @method bool hasDeleteUrl()
- * @method $this setDeleteUrl(string $value)
+ * @method $this setDeleteUrl(string)
  * @method string getIdSuffix()
  */
 class Mage_Checkout_Block_Cart_Item_Renderer extends Mage_Core_Block_Template

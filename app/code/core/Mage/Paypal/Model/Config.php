@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Paypal
@@ -670,7 +676,7 @@ class Mage_Paypal_Model_Config
      * Check whether method available for checkout or not
      * Logic based on merchant country, methods dependence
      *
-     * @param string|null $methodCode Method code
+     * @param string $method Method code
      * @return bool
      */
     public function isMethodAvailable($methodCode = null)
@@ -1066,7 +1072,6 @@ class Mage_Paypal_Model_Config
      * @param string $localeCode
      * @param float $orderTotal
      * @param string $pal encrypted summary about merchant
-     * @return string
      * @see Paypal_Model_Api_Nvp::callGetPalDetails()
      */
     public function getExpressCheckoutShortcutImageUrl($localeCode, $orderTotal = null, $pal = null)
@@ -1096,7 +1101,6 @@ class Mage_Paypal_Model_Config
      * @param float $orderTotal
      * @param string $pal
      * @param string $staticSize
-     * @return string
      */
     public function getPaymentMarkImageUrl($localeCode, $orderTotal = null, $pal = null, $staticSize = null)
     {
@@ -1128,8 +1132,7 @@ class Mage_Paypal_Model_Config
      * Get "What Is PayPal" localized URL
      * Supposed to be used with "mark" as popup window
      *
-     * @param Mage_Core_Model_Locale|null $locale
-     * @return string
+     * @param Mage_Core_Model_Locale $locale
      */
     public function getPaymentMarkWhatIsPaypalUrl(Mage_Core_Model_Locale $locale = null)
     {
@@ -1155,7 +1158,6 @@ class Mage_Paypal_Model_Config
      * @param string $localeCode
      * @param bool $isVertical
      * @param bool $isEcheck
-     * @return string
      */
     public function getSolutionImageUrl($localeCode, $isVertical = false, $isEcheck = false)
     {
@@ -1169,7 +1171,6 @@ class Mage_Paypal_Model_Config
      * Getter for Payment form logo images
      *
      * @param string $localeCode
-     * @return string
      */
     public function getPaymentFormLogoUrl($localeCode)
     {
@@ -1511,7 +1512,6 @@ class Mage_Paypal_Model_Config
      * @param string $localeCode
      * @param float $orderTotal
      * @param string $pal
-     * @return string
      */
     protected function _getDynamicImageUrl($type, $localeCode, $orderTotal, $pal)
     {

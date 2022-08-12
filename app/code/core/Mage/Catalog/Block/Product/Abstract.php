@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Catalog
@@ -632,13 +638,10 @@ abstract class Mage_Catalog_Block_Product_Abstract extends Mage_Core_Block_Templ
      */
     public function getAddToWishlistUrlCustom($product, $addFormKey = true)
     {
-        /** @var Mage_Wishlist_Helper_Data $helper */
-        $helper = $this->helper('wishlist');
-
         if (!$addFormKey) {
-            return $helper->getAddUrlWithCustomParams($product, array(), false);
+            return $this->helper('wishlist')->getAddUrlWithCustomParams($product, array(), false);
         }
-        return $helper->getAddUrl($product);
+        return $this->helper('wishlist')->getAddUrl($product);
     }
 
     /**
@@ -650,19 +653,16 @@ abstract class Mage_Catalog_Block_Product_Abstract extends Mage_Core_Block_Templ
      */
     public function getAddToCompareUrlCustom($product, $addFormKey = true)
     {
-        /** @var Mage_Catalog_Helper_Product_Compare $helper */
-        $helper = $this->helper('catalog/product_compare');
-
         if (!$addFormKey) {
-            return $helper->getAddUrlCustom($product, false);
+            return $this->helper('catalog/product_compare')->getAddUrlCustom($product, false);
         }
-        return $helper->getAddUrl($product);
+        return $this->helper('catalog/product_compare')->getAddUrl($product);
     }
 
     /**
      * If exists price template block, retrieve price blocks from it
      *
-     * @return $this
+     * @return Mage_Catalog_Block_Product_Abstract
      */
     protected function _prepareLayout()
     {
@@ -690,16 +690,12 @@ abstract class Mage_Catalog_Block_Product_Abstract extends Mage_Core_Block_Templ
      */
     public function  getAddToCartUrlCustom($product, $additional = array(), $addFormKey = true)
     {
-        /** @var Mage_Checkout_Helper_Cart $helper */
-        $helper = $this->helper('checkout/cart');
-
         if (!$product->getTypeInstance(true)->hasRequiredOptions($product)) {
             if (!$addFormKey) {
-                return $helper->getAddUrlCustom($product, $additional, false);
+                return $this->helper('checkout/cart')->getAddUrlCustom($product, $additional, false);
             }
-            return $helper->getAddUrl($product, $additional);
+            return $this->helper('checkout/cart')->getAddUrl($product, $additional);
         }
-
         if ($addFormKey) {
             $additional = array_merge(
                 $additional,

@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_ConfigurableSwatches
@@ -33,6 +39,7 @@ class Mage_ConfigurableSwatches_Helper_Mediafallback extends Mage_Core_Helper_Ab
      * @param array $parentProducts
      * @deprecated use $this->attachProductChildrenAttributeMapping() instead
      * @param int $storeId
+     * @return void
      */
     public function attachConfigurableProductChildrenAttributeMapping(array $parentProducts, $storeId)
     {
@@ -47,6 +54,7 @@ class Mage_ConfigurableSwatches_Helper_Mediafallback extends Mage_Core_Helper_Ab
      * @param array $parentProducts
      * @param int $storeId
      * @param bool $onlyListAttributes
+     * @return void
      */
     public function attachProductChildrenAttributeMapping(array $parentProducts, $storeId, $onlyListAttributes = false)
     {
@@ -302,6 +310,7 @@ class Mage_ConfigurableSwatches_Helper_Mediafallback extends Mage_Core_Helper_Ab
      * Groups media gallery images by local images and child images
      *
      * @param Mage_Catalog_Model_Product $product
+     * @return void
      */
     public function groupMediaGalleryImages(Mage_Catalog_Model_Product $product)
     {
@@ -334,6 +343,7 @@ class Mage_ConfigurableSwatches_Helper_Mediafallback extends Mage_Core_Helper_Ab
      *
      * @param array $products
      * @param int $storeId
+     * @return void
      */
     public function attachGallerySetToCollection(array $products, $storeId)
     {
@@ -423,6 +433,7 @@ class Mage_ConfigurableSwatches_Helper_Mediafallback extends Mage_Core_Helper_Ab
      *
      * @param array $products
      * @param int $storeId
+     * @return void
      */
     public function attachChildrenProducts(array $products, $storeId)
     {

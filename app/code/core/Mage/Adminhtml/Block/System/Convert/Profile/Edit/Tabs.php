@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -27,9 +33,6 @@
  */
 class Mage_Adminhtml_Block_System_Convert_Profile_Edit_Tabs extends Mage_Adminhtml_Block_Widget_Tabs
 {
-    /**
-     * Mage_Adminhtml_Block_System_Convert_Profile_Edit_Tabs constructor.
-     */
     public function __construct()
     {
         parent::__construct();
@@ -38,19 +41,13 @@ class Mage_Adminhtml_Block_System_Convert_Profile_Edit_Tabs extends Mage_Adminht
         $this->setTitle(Mage::helper('adminhtml')->__('Import/Export Profile'));
     }
 
-    /**
-     * @inheritDoc
-     * @throws Exception
-     */
     protected function _beforeToHtml()
     {
         $new = !Mage::registry('current_convert_profile')->getId();
 
-        /** @var Mage_Adminhtml_Block_System_Convert_Profile_Edit_Tab_Edit $block */
-        $block = $this->getLayout()->createBlock('adminhtml/system_convert_profile_edit_tab_edit');
         $this->addTab('edit', array(
             'label'     => Mage::helper('adminhtml')->__('Profile Actions XML'),
-            'content'   => $block->initForm()->toHtml(),
+            'content'   => $this->getLayout()->createBlock('adminhtml/system_convert_profile_edit_tab_edit')->initForm()->toHtml(),
             'active'    => true,
         ));
 

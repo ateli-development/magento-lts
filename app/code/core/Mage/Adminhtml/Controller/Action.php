@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -122,9 +128,7 @@ class Mage_Adminhtml_Controller_Action extends Mage_Core_Controller_Varien_Actio
      */
     protected function _addBreadcrumb($label, $title, $link=null)
     {
-        /** @var Mage_Adminhtml_Block_Widget_Breadcrumbs $block */
-        $block = $this->getLayout()->getBlock('breadcrumbs');
-        $block->addLink($label, $title, $link);
+        $this->getLayout()->getBlock('breadcrumbs')->addLink($label, $title, $link);
         return $this;
     }
 
@@ -361,9 +365,8 @@ class Mage_Adminhtml_Controller_Action extends Mage_Core_Controller_Varien_Actio
     /**
      * Set redirect into responce
      *
-     * @param string $path
-     * @param array $arguments
-     * @return $this
+     * @param   string $path
+     * @param   array $arguments
      */
     protected function _redirect($path, $arguments=array())
     {

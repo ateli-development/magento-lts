@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Paypal
@@ -75,7 +81,7 @@ class Mage_Paypal_Block_Adminhtml_System_Config_Fieldset_Global
      * Get element by id
      *
      * @param string $elementId
-     * @return Varien_Data_Form_Element_Abstract|false
+     * @return Varien_Data_Form_Element_Abstract
      */
     public function getElement($elementId)
     {
@@ -88,7 +94,7 @@ class Mage_Paypal_Block_Adminhtml_System_Config_Fieldset_Global
     /**
      * Return checkbox html with hidden field for correct config values
      *
-     * @param Varien_Data_Form_Element_Abstract $element
+     * @param string $elementId
      * @return string
      */
     public function getElementHtml(Varien_Data_Form_Element_Abstract $element)

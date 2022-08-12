@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -50,7 +56,7 @@ class Mage_Adminhtml_Block_Widget_Grid_Serializer extends Mage_Core_Block_Templa
     /**
      * Register grid column input name to serialize
      *
-     * @param array|string $names
+     * @param string $name
      */
     public function addColumnInputName($names)
     {
@@ -69,8 +75,7 @@ class Mage_Adminhtml_Block_Widget_Grid_Serializer extends Mage_Core_Block_Templa
     /**
      * Get grid column input names to serialize
      *
-     * @param bool $asJSON
-     * @return array
+     * @return unknown
      */
     public function getColumnInputNames($asJSON = false)
     {

@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Authorizenet
@@ -130,7 +136,7 @@ class Mage_Authorizenet_Model_Directpost extends Mage_Paygate_Model_Authorizenet
     /**
      * Check void availability
      *
-     * @param   Varien_Object $payment
+     * @param   Varien_Object $invoicePayment
      * @return  bool
      */
     public function canVoid(Varien_Object $payment)
@@ -226,8 +232,7 @@ class Mage_Authorizenet_Model_Directpost extends Mage_Paygate_Model_Authorizenet
     /**
      * refund the amount with transaction id
      *
-     * @param Varien_Object $payment
-     * @param string $amount
+     * @param string $payment Varien_Object object
      * @return $this
      * @throws Mage_Core_Exception
      */
@@ -321,7 +326,7 @@ class Mage_Authorizenet_Model_Directpost extends Mage_Paygate_Model_Authorizenet
      * Instantiate state and set it to state object
      *
      * @param string $paymentAction
-     * @param Varien_Object $stateObject
+     * @param Varien_Object
      */
     public function initialize($paymentAction, $stateObject)
     {
@@ -348,7 +353,7 @@ class Mage_Authorizenet_Model_Directpost extends Mage_Paygate_Model_Authorizenet
     /**
      * Generate request object and fill its fields from Quote or Order object
      *
-     * @param Mage_Sales_Model_Order $order Quote or order object.
+     * @param Mage_Core_Model_Abstract $entity Quote or order object.
      * @return Mage_Authorizenet_Model_Directpost_Request
      */
     public function generateRequestFromOrder(Mage_Sales_Model_Order $order)

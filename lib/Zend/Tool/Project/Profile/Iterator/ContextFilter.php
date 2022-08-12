@@ -165,7 +165,6 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
      *
      * @return bool
      */
-    #[ReturnTypeWillChange]
     public function accept()
     {
         $currentItem = $this->current();
@@ -199,7 +198,6 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
      *
      * @return unknown
      */
-    #[ReturnTypeWillChange]
     function getChildren()
     {
 

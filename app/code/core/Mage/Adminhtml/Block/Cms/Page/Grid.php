@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -27,6 +33,7 @@
  */
 class Mage_Adminhtml_Block_Cms_Page_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
+
     public function __construct()
     {
         parent::__construct();
@@ -35,25 +42,20 @@ class Mage_Adminhtml_Block_Cms_Page_Grid extends Mage_Adminhtml_Block_Widget_Gri
         $this->setDefaultDir('ASC');
     }
 
-    /**
-     * @inheritDoc
-     * @throws Exception
-     */
     protected function _prepareCollection()
     {
         $collection = Mage::getModel('cms/page')->getCollection();
+        /* @var $collection Mage_Cms_Model_Mysql4_Page_Collection */
         $collection->setFirstStoreFlag(true);
         $this->setCollection($collection);
 
         return parent::_prepareCollection();
     }
 
-    /**
-     * @inheritDoc
-     * @throws Exception
-     */
     protected function _prepareColumns()
     {
+        $baseUrl = $this->getUrl();
+
         $this->addColumn('title', array(
             'header'    => Mage::helper('cms')->__('Title'),
             'align'     => 'left',
@@ -65,6 +67,8 @@ class Mage_Adminhtml_Block_Cms_Page_Grid extends Mage_Adminhtml_Block_Widget_Gri
             'align'     => 'left',
             'index'     => 'identifier'
         ));
+
+
 
         $this->addColumn('root_template', array(
             'header'    => Mage::helper('cms')->__('Layout'),
@@ -119,24 +123,19 @@ class Mage_Adminhtml_Block_Cms_Page_Grid extends Mage_Adminhtml_Block_Widget_Gri
         return parent::_prepareColumns();
     }
 
-    /**
-     * @inheritDoc
-     */
     protected function _afterLoadCollection()
     {
         $this->getCollection()->walk('afterLoad');
-        return parent::_afterLoadCollection();
+        parent::_afterLoadCollection();
     }
 
-    /**
-     * @param Mage_Cms_Model_Resource_Page_Collection $collection
-     * @param Mage_Adminhtml_Block_Widget_Grid_Column $column
-     */
     protected function _filterStoreCondition($collection, $column)
     {
-        if ($value = $column->getFilter()->getValue()) {
-            $collection->addStoreFilter($value);
+        if (!$value = $column->getFilter()->getValue()) {
+            return;
         }
+
+        $this->getCollection()->addStoreFilter($value);
     }
 
     /**

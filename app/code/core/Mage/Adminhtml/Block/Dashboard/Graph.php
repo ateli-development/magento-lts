@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -107,6 +113,8 @@ class Mage_Adminhtml_Block_Dashboard_Graph extends Mage_Adminhtml_Block_Dashboar
 
     /**
      * Initialize object
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -128,6 +136,7 @@ class Mage_Adminhtml_Block_Dashboard_Graph extends Mage_Adminhtml_Block_Dashboar
      * Set data rows
      *
      * @param mixed $rows
+     * @return void
      */
     public function setDataRows($rows)
     {
@@ -139,6 +148,7 @@ class Mage_Adminhtml_Block_Dashboard_Graph extends Mage_Adminhtml_Block_Dashboar
      *
      * @param string $seriesId
      * @param array $options
+     * @return void
      */
     public function addSeries($seriesId, array $options)
     {
@@ -440,6 +450,7 @@ class Mage_Adminhtml_Block_Dashboard_Graph extends Mage_Adminhtml_Block_Dashboar
      *
      * @param string $axis
      * @param array $labels
+     * @return void
      */
     public function setAxisLabels($axis, $labels)
     {
@@ -450,6 +461,7 @@ class Mage_Adminhtml_Block_Dashboard_Graph extends Mage_Adminhtml_Block_Dashboar
      * Set html id
      *
      * @param string $htmlId
+     * @return void
      */
     public function setHtmlId($htmlId)
     {

@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Dataflow
@@ -40,7 +46,7 @@ class Mage_Dataflow_Model_Resource_Profile extends Mage_Core_Model_Resource_Db_A
     /**
      * Setting up created_at and updarted_at
      *
-     * @inheritDoc
+     * @param Mage_Core_Model_Abstract $object
      */
     protected function _beforeSave(Mage_Core_Model_Abstract $object)
     {

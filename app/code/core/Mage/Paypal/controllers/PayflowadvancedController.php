@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Paypal
@@ -51,6 +57,8 @@ class Mage_Paypal_PayflowadvancedController extends Mage_Paypal_Controller_Expre
 
     /**
      * When a customer cancel payment from payflow gateway.
+     *
+     * @return void
      */
     public function cancelPaymentAction()
     {
@@ -63,6 +71,8 @@ class Mage_Paypal_PayflowadvancedController extends Mage_Paypal_Controller_Expre
 
     /**
      * When a customer return to website from payflow gateway.
+     *
+     * @return void
      */
     public function returnUrlAction()
     {
@@ -99,6 +109,8 @@ class Mage_Paypal_PayflowadvancedController extends Mage_Paypal_Controller_Expre
 
     /**
      * Submit transaction to Payflow getaway into iframe
+     *
+     * @return void
      */
     public function formAction()
     {
@@ -108,6 +120,8 @@ class Mage_Paypal_PayflowadvancedController extends Mage_Paypal_Controller_Expre
 
     /**
      * Get response from PayPal by silent post method
+     *
+     * @return void
      */
     public function silentPostAction()
     {

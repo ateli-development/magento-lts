@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -104,23 +110,25 @@ class Mage_Adminhtml_Block_Checkout_Agreement_Grid extends Mage_Adminhtml_Block_
     }
 
     /**
-     * @inheritDoc
+     * @return void
      */
     protected function _afterLoadCollection()
     {
         $this->getCollection()->walk('afterLoad');
-        return parent::_afterLoadCollection();
+        parent::_afterLoadCollection();
     }
 
     /**
-     * @param Mage_Checkout_Model_Resource_Agreement_Collection $collection
+     * @param Varien_Data_Collection $collection
      * @param Mage_Adminhtml_Block_Widget_Grid_Column $column
      */
     protected function _filterStoreCondition($collection, $column)
     {
-        if ($value = $column->getFilter()->getValue()) {
-            $collection->addStoreFilter($value);
+        if (!$value = $column->getFilter()->getValue()) {
+            return;
         }
+
+        $this->getCollection()->addStoreFilter($value);
     }
 
     /**

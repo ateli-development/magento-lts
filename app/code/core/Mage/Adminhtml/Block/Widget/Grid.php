@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenMage
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -11,6 +11,12 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    Mage
  * @package     Mage_Adminhtml
@@ -79,14 +85,14 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
     /**
      * Empty grid text
      *
-     * @var string|null
+     * @var sting|null
      */
     protected $_emptyText;
 
      /**
      * Empty grid text CSS class
      *
-     * @var string|null
+     * @var sting|null
      */
     protected $_emptyTextCss    = 'a-center';
 
@@ -557,7 +563,7 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
     /**
      * Decode URL encoded filter value recursive callback method
      *
-     * @param string $value
+     * @var string $value
      */
     protected function _decodeFilter(&$value)
     {
@@ -570,9 +576,6 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
         $this->getCollection()->setCurPage((int) $this->getParam($this->getVarNamePage(), $this->_defaultPage));
     }
 
-    /**
-     * @return $this
-     */
     protected function _prepareColumns()
     {
         $this->sortColumnsByOrder();
@@ -608,7 +611,7 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
     /**
      * Prepare grid massaction column
      *
-     * @return $this
+     * @return unknown
      */
     protected function _prepareMassactionColumn()
     {
@@ -638,9 +641,6 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     protected function _prepareGrid()
     {
         $this->_prepareColumns();
@@ -661,9 +661,6 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
         return parent::_beforeToHtml();
     }
 
-    /**
-     * @return $this
-     */
     protected function _afterLoadCollection()
     {
         return $this;
@@ -1484,7 +1481,7 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
     /**
      * Set count totals
      *
-     * @param boolean $count
+     * @param boolean $visible
      */
     public function setCountTotals($count=true)
     {
@@ -1504,7 +1501,7 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
     /**
      * Set totals
      *
-     * @param Varien_Object $totals
+     * @param boolean $visible
      */
     public function setTotals(Varien_Object $totals)
     {
@@ -1596,10 +1593,9 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
     /**
      * Retrieve columns to render
      *
-     * @return Mage_Adminhtml_Block_Widget_Grid_Column[]
+     * @return unknown
      */
-    public function getSubTotalColumns()
-    {
+    public function getSubTotalColumns() {
         return $this->getColumns();
     }
 
@@ -1651,6 +1647,7 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
     /**
      * Retrieve columns for multiple rows
      *
+     * @param Varien_Object $item
      * @return array
      */
     public function getMultipleRowColumns()
@@ -1695,6 +1692,7 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
     /**
      * Retrieve colspan for empty cell
      *
+     * @param Varien_Object $item
      * @return integer
      */
     public function getEmptyCellColspan()
@@ -1727,7 +1725,7 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
     /**
      * Return row url for js event handlers
      *
-     * @param Mage_Catalog_Model_Product|Varien_Object $item
+     * @param Mage_Catalog_Model_Product|Varien_Object
      * @return string
      */
     public function getRowUrl($item)
