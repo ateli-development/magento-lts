@@ -19,7 +19,7 @@ jobs:
         run: php --version && composer --version
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --ignore-platform-reqs
+        run: composer install --prefer-dist --no-progress --ignore-platform-req=ext-*
 
       - name: Checkout OpenMage repo
         uses: actions/checkout@v3
@@ -28,7 +28,7 @@ jobs:
 
       - name: Install OpenMage dependencies
         working-directory: ./openmage
-        run: composer install --prefer-dist --no-progress --ignore-platform-reqs
+        run: composer install --prefer-dist --no-progress --ignore-platform-req=ext-*
 
       - name: run phpUnit
         run: bash ./run_unit_tests.sh

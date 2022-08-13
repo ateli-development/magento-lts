@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --ignore-platform-reqs
+        run: composer install --prefer-dist --no-progress --no-suggest --ignore-platform-req=ext-*
       - name: ensure existance of ./app/code/local
         run: mkdir -p app/code/local
       - name: PHPStan Static Analysis
@@ -102,7 +102,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --ignore-platform-reqs
+        run: composer install --prefer-dist --no-progress --no-suggest --ignore-platform-req=ext-*
       - name: ensure existance of ./app/code/local
         run: mkdir -p app/code/local
       - name: PHPStan Static Analysis
