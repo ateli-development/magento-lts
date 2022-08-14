@@ -259,7 +259,7 @@ small {
 
       .range {
         .range-line {
-          width: 113px;
+          width: 125px;
         }
 
         .label {
@@ -269,7 +269,11 @@ small {
         }
 
         div.date {
-          min-width: 125px;
+          min-width: 140px;
+        }
+
+        input {
+          width: 75px !important;
         }
       }
 
