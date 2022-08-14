@@ -40,7 +40,6 @@ body, .popup-window .content-header {
 
 .entry-edit fieldset, .entry-edit .fieldset, .box {
   background: #eee;
-  border: 1px solid;
 }
 
 .grid tr.headings th a.sort-arrow-desc, .grid tr.headings th a.sort-arrow-asc {
