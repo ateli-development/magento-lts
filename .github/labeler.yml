@@ -562,10 +562,16 @@
 
 # Add Template Labels
 'Template : admin':
-  - app/design/adminhtml/*
-  - app/design/adminhtml/**/*
-  - skin/adminhtml/*
-  - skin/adminhtml/**/*
+  - app/design/adminhtml/default/default/*
+  - app/design/adminhtml/default/default/**/*
+  - skin/adminhtml/default/default/*
+  - skin/adminhtml/default/default/**/*
+
+'Template : admin - openmage':
+  - app/design/adminhtml/default/openmage/*
+  - app/design/adminhtml/default/openmage/**/*
+  - skin/adminhtml/default/openmage/*
+  - skin/adminhtml/default/openmage/**/*
 
 'Template : base':
   - app/design/frontend/base/*

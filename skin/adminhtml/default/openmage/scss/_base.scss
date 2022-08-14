@@ -41,9 +41,8 @@
 //original selectors
 //.box, .entry-edit fieldset, .entry-edit .fieldset
 %extend_5 {
-  border: 1px solid $color_alto_approx;
   background: $color_gallery_approx;
-  border-top: 1px solid $color_alto_approx;
+  border: 1px solid;
 }
 
 //original selectors
@@ -152,7 +151,6 @@
 //.grid-severity-notice span, .grid-severity-critical span, .grid-severity-major span, .grid-severity-minor span
 %extend_15 {
   font: 400 12px/1.33 'Open Sans', sans-serif;
-  font-weight: 400;
   padding: 2px 10px;
 }
 
@@ -309,7 +307,7 @@
 %extend_30 {
   color: $color_dark_grey;
   text-decoration: none;
-  background: var(--color-main-xs);
+  background: $color-main-xs;
   display: block;
 }
 
