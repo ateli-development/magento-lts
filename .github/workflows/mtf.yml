@@ -14,17 +14,21 @@ jobs:
       SELENIUM_HOST: http://selenium:4444/wd/hub
 
     services:
-      mariadb:
-        image: mysql:5.7
-        ports:
-          - 3306
+      mysql:
+        image: bitnami/mysql:8.0.31
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          ALLOW_EMPTY_PASSWORD: yes
           MYSQL_USER: openmage
           MYSQL_PASSWORD: openmage
           MYSQL_DATABASE: openmage
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
-        command: --default-authentication-plugin=mysql_native_password
+          MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
+        ports:
+          - 3306/tcp
+        options: >-
+          --health-cmd="mysqladmin ping" 
+          --health-interval=10s 
+          --health-timeout=5s 
+          --health-retries=3
       selenium:
         image: selenium/standalone-chrome
         # options: --health-cmd "curl http://selenium:4444" --health-interval=5s
@@ -51,7 +55,7 @@ jobs:
           php -f install.php -- \
             --license_agreement_accepted yes \
             --locale en_US --timezone "America/Los_Angeles" --default_currency USD \
-            --db_host 127.0.0.1 --db_name openmage --db_user openmage --db_pass openmage \
+            --db_host mysql --db_name openmage --db_user openmage --db_pass openmage \
             --url "http://${TEST_HOSTNAME}/" --use_rewrites yes --use_secure no \
             --secure_base_url "http://${TEST_HOSTNAME}/" --use_secure_admin no \
             --admin_lastname Owner --admin_firstname Store --admin_email "admin@example.com" \
