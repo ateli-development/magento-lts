@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install OpenMage dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction --ignore-platform-reqs
+        uses: MilesChou/composer-action/8.0/install@v1
 
       - name: Verify MySQL connection
         env:
@@ -68,7 +68,7 @@ jobs:
           
       - name: Install PHPUnit Dependencies
         working-directory: ./dev/tests/functional
-        run: composer --ignore-platform-reqs install  --no-interaction
+        uses: MilesChou/composer-action/8.0/install@v1
 
       - name: Start selenoid
         uses: ajinx/zalenium@1.1
