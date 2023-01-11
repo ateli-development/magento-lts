@@ -58,10 +58,7 @@ jobs:
       - name: Verify MySQL connection
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
-        run: |
-          while ! mysqladmin ping -h 127.0.0.1 -P $DB_PORT; do
-            sleep 1
-          done          
+        run: mysqladmin ping -u root -h 127.0.0.1 -P $DB_PORT --wait=1
 
       - name: Install Magento
         env:
@@ -69,10 +66,12 @@ jobs:
         run: |
           sudo chmod 777 app/etc var/ media/
           sudo chown -R www-data:www-data .
+          whoami
+          ls -al . app
           sudo -u www-data php -f install.php -- \
             --license_agreement_accepted yes \
             --locale en_US --timezone "America/Los_Angeles" --default_currency USD \
-            --db_host localhost:${DB_PORT} --db_name openmage --db_user openmage --db_pass openmage \
+            --db_host 127.0.0.1:${DB_PORT} --db_name openmage --db_user openmage --db_pass openmage \
             --url "http://${MAGENTO_HOST_NAME}/" --use_rewrites yes --use_secure no \
             --secure_base_url "http://${MAGENTO_HOST_NAME}/" --use_secure_admin no \
             --admin_lastname Owner --admin_firstname Store --admin_email "admin@example.com" \
