@@ -3,16 +3,10 @@ on: [pull_request]
 jobs:
   functional:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu
-      ports:
-        - 80:80
-      options: --network-alias=testserver
-      volumes:
-        - ${{ github.workspace }}:/var/www/html
 
     env:
-      TEST_HOSTNAME: testserver
+      PHP_VERSION: 8.1
+      MAGENTO_HOST_NAME: localhost
       SELENIUM_HOST: http://selenium:4444/wd/hub
 
     services:
@@ -41,13 +35,10 @@ jobs:
       - name: Checkout OpenMage repo
         uses: actions/checkout@v3
 
-      - name: Install Apt Packages
-        run: sudo apt-get install -y apache2 git mysql-client
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: ${{ env.PHP_VERSION }}
           extensions: ctype, curl, dom, gd, hash, iconv, intl, json, libxml, mbstring, pdo_mysql, xml, soap, zlib
 
       - name: Get composer cache directory
@@ -76,12 +67,13 @@ jobs:
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
+          sudo chmod 777 app/etc var/ media/
           php -f install.php -- \
             --license_agreement_accepted yes \
             --locale en_US --timezone "America/Los_Angeles" --default_currency USD \
             --db_host mysql:${DB_PORT} --db_name openmage --db_user openmage --db_pass openmage \
-            --url "http://${TEST_HOSTNAME}/" --use_rewrites yes --use_secure no \
-            --secure_base_url "http://${TEST_HOSTNAME}/" --use_secure_admin no \
+            --url "http://${MAGENTO_HOST_NAME}/" --use_rewrites yes --use_secure no \
+            --secure_base_url "http://${MAGENTO_HOST_NAME}/" --use_secure_admin no \
             --admin_lastname Owner --admin_firstname Store --admin_email "admin@example.com" \
             --admin_username admin --admin_password 123123q123123q \
             --encryption_key "I2V7t7fiCIRKw9FWz4m3CStgeBG1T+ATZ0Us+W8jAIk="
@@ -90,16 +82,27 @@ jobs:
         working-directory: ./dev/tests/functional
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Start Apache
+      - uses: dominicwatson/github-action-envsubst@v1
+        with:
+          files: .github/mtf/apache_virtual_host
+          patterns: $GITHUB_WORKSPACE $MAGENTO_HOST_NAME $PHP_VERSION
+
+      - name: Start Web Server
         run: |
-          sudo service apache2 start
-          curl http://$TEST_HOSTNAME
+          sudo cp -f .github/mtf/apache_virtual_host /etc/apache2/sites-enabled/000-default.conf
+          #sudo cp -f .github/mtf/www.conf /usr/local/etc/php-fpm.d/www.conf
+          cat /usr/local/etc/php-fpm.d/www.conf
+          sudo php-fpm -t
+          sudo chown -R www-data:www-data .
+          sudo systemctl start apache2
+          sudo systemctl start php${{ env.PHP_VERSION}}-fpm
+          curl http://$MAGENTO_HOST_NAME
 
       - name: Setup and check MTF
         working-directory: ./dev/tests/functional
         run: |
           cp ./phpunit.xml.dist ./phpunit.xml
-          sed -e "s?localhost?${TEST_HOSTNAME}?g" --in-place ./phpunit.xml
+          sed -e "s?localhost?${MAGENTO_HOST_NAME}?g" --in-place ./phpunit.xml
           sed -e "s?basic?travis_acceptance?g" --in-place ./phpunit.xml
           php -f utils/generate.php
           cd ./utils
