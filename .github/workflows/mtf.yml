@@ -24,9 +24,9 @@ jobs:
         ports:
           - 3306/tcp
         options: >-
-          --health-cmd="mysqladmin ping" 
-          --health-interval=10s 
-          --health-timeout=5s 
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
           --health-retries=3
       selenium:
         image: selenium/standalone-chrome
@@ -38,38 +38,54 @@ jobs:
       - name: Checkout OpenMage repo
         uses: actions/checkout@v3
 
-      - name: Setup PHP with PECL extension
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
+          extensions: mbstring, dom, fileinfo, mysql
 
-      - name: Install OpenMage dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Verify MySQL connection
         env:
-          PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
-          while ! mysqladmin ping -h"localhost" -P"$PORT" --silent; do
+          while ! mysqladmin ping -h"localhost" -P"$DB_PORT" --silent; do
             sleep 1
           done          
 
       - name: Install Magento
+        env:
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
           php -f install.php -- \
             --license_agreement_accepted yes \
             --locale en_US --timezone "America/Los_Angeles" --default_currency USD \
-            --db_host mysql --db_name openmage --db_user openmage --db_pass openmage \
+            --db_host mysql:${DB_PORT} --db_name openmage --db_user openmage --db_pass openmage \
             --url "http://${TEST_HOSTNAME}/" --use_rewrites yes --use_secure no \
             --secure_base_url "http://${TEST_HOSTNAME}/" --use_secure_admin no \
             --admin_lastname Owner --admin_firstname Store --admin_email "admin@example.com" \
             --admin_username admin --admin_password 123123q123123q \
             --encryption_key "I2V7t7fiCIRKw9FWz4m3CStgeBG1T+ATZ0Us+W8jAIk="
 
-      - name: Check if site is accessible
+      - name: Install Apache
         run: |
+          sudo apt-get install -y apache2
+          sudo service apache2 start
           curl http://$TEST_HOSTNAME
-          
+
       - name: Install PHPUnit Dependencies
         working-directory: ./dev/tests/functional
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
