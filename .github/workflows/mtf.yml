@@ -4,6 +4,7 @@ jobs:
   functional:
     runs-on: ubuntu-latest
     container:
+      image: ubuntu
       ports:
         - 80:80
       options: --network-alias=testserver
