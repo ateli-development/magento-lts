@@ -83,9 +83,9 @@ jobs:
             --admin_username admin --admin_password 123123q123123q \
             --encryption_key "I2V7t7fiCIRKw9FWz4m3CStgeBG1T+ATZ0Us+W8jAIk="
 
-      - name: Install Apache
+      - name: Install Apt Packages
         run: |
-          sudo apt-get install -y apache2 git
+          sudo apt-get install -y apache2 git mysql-client
           sudo service apache2 start
           curl http://$TEST_HOSTNAME
 
