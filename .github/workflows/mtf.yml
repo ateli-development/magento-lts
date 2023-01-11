@@ -41,6 +41,9 @@ jobs:
       - name: Checkout OpenMage repo
         uses: actions/checkout@v3
 
+      - name: Install Apt Packages
+        run: sudo apt-get install -y apache2 git mysql-client
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -83,15 +86,14 @@ jobs:
             --admin_username admin --admin_password 123123q123123q \
             --encryption_key "I2V7t7fiCIRKw9FWz4m3CStgeBG1T+ATZ0Us+W8jAIk="
 
-      - name: Install Apt Packages
-        run: |
-          sudo apt-get install -y apache2 git mysql-client
-          sudo service apache2 start
-          curl http://$TEST_HOSTNAME
-
       - name: Install PHPUnit Dependencies
         working-directory: ./dev/tests/functional
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Start Apache
+        run: |
+          sudo service apache2 start
+          curl http://$TEST_HOSTNAME
 
       - name: Setup and check MTF
         working-directory: ./dev/tests/functional
