@@ -59,7 +59,8 @@ jobs:
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
-          while ! mysqladmin ping -h"localhost" -P"$DB_PORT" --silent; do
+          while ! mysqladmin ping -h"mysql" -P"$DB_PORT" --silent; do
+            echo "Waiting for MySQL server..."
             sleep 1
           done          
 
@@ -68,7 +69,8 @@ jobs:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
           sudo chmod 777 app/etc var/ media/
-          php -f install.php -- \
+          sudo chown -R www-data:www-data .
+          sudo -u www-data php -f install.php -- \
             --license_agreement_accepted yes \
             --locale en_US --timezone "America/Los_Angeles" --default_currency USD \
             --db_host mysql:${DB_PORT} --db_name openmage --db_user openmage --db_pass openmage \
