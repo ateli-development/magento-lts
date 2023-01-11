@@ -59,7 +59,7 @@ jobs:
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
-          while ! mysqladmin ping -P"$DB_PORT"; do
+          while ! mysqladmin ping -h 127.0.0.1 -P $DB_PORT; do
             sleep 1
           done          
 
@@ -95,6 +95,7 @@ jobs:
           cat /usr/local/etc/php-fpm.d/www.conf
           sudo php-fpm -t
           sudo chown -R www-data:www-data .
+          sudo a2enmod rewrite actions fastcgi alias
           sudo systemctl start apache2
           sudo systemctl start php${{ env.PHP_VERSION}}-fpm
           curl http://$MAGENTO_HOST_NAME
@@ -109,9 +110,11 @@ jobs:
           cd ./utils
           php -f mtf troubleshooting:check-all
 
-      - name: Run PHPUnit
-        working-directory: ./dev/tests/functional
-        run: vendor/phpunit/phpunit/phpunit
+      - name: Run PHPUnit headless test framework
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: vendor/phpunit/phpunit/phpunit
+          working-directory: ./dev/tests/functional
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.40
